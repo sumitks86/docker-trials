@@ -10,8 +10,9 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
+        docker.withServer('tcp://192.168.56.100:2376', 'swarm-certs') {
         app = docker.build("sks86/hellonode")
+        }
     }
 
     stage('Test image') {
